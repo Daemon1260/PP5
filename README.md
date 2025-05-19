@@ -46,6 +46,68 @@ In this exercise you will:
 # Paste here the sequence of git commands you ran
 # and the relevant terminal output (e.g., branch listing, merge messages)
 ```
+Aufgabe 1:
+
+enoermerich@Daemon1260:/mnt/c/WINDOWS/system32$ mkdir ~/git-uebung
+mkdir: cannot create directory ‘/home/enoermerich/git-uebung’: File exists
+enoermerich@Daemon1260:/mnt/c/WINDOWS/system32$ mkdir ~/git-uebung-neu
+mkdir: cannot create directory ‘/home/enoermerich/git-uebung-neu’: File exists
+enoermerich@Daemon1260:/mnt/c/WINDOWS/system32$ mkdir ~/neue-git-uebung
+enoermerich@Daemon1260:/mnt/c/WINDOWS/system32$ cd ~/neue-git-uebung
+enoermerich@Daemon1260:~/neue-git-uebung$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint:   git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint:   git branch -m <name>
+Initialized empty Git repository in /home/enoermerich/neue-git-uebung/.git/
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout -b feature-1
+Switched to a new branch 'feature-1'
+enoermerich@Daemon1260:~/neue-git-uebung$ echo "Das ist eine neue Funktion." > feature.txt
+enoermerich@Daemon1260:~/neue-git-uebung$ git add feature.txt
+enoermerich@Daemon1260:~/neue-git-uebung$ git comit -m "add feature.txt with description"
+git: 'comit' is not a git command. See 'git --help'.
+
+The most similar command is
+        commit
+enoermerich@Daemon1260:~/neue-git-uebung$ git commit -m "add feature.txt with description"
+[feature-1 (root-commit) 1539ba1] add feature.txt with description
+ Committer: enoermerich <enoermerich@Daemon1260.>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 feature.txt
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout master
+error: pathspec 'master' did not match any file(s) known to git
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout -b master
+Switched to a new branch 'master'
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout feature-1
+Switched to branch 'feature-1'
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout master
+Switched to branch 'master'
+enoermerich@Daemon1260:~/neue-git-uebung$ git merge feature-1
+Already up to date.
+enoermerich@Daemon1260:~/neue-git-uebung$ git config --global user.name "Noermerich"
+enoermerich@Daemon1260:~/neue-git-uebung$ git config --global user.email "rene.noermerich@stud.thga.de"
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout master
+Already on 'master'
+enoermerich@Daemon1260:~/neue-git-uebung$ git merge feature-1
+Already up to date.
+enoermerich@Daemon1260:~/neue-git-uebung$
 
 ---
 
@@ -69,6 +131,47 @@ In this exercise you will:
 ```bash
 # Paste here the push & clone commands and outputs
 ```
+Aufgabe 2:
+
+enoermerich@Daemon1260:~/neue-git-uebung$ ssh user92@128.140.85.215 \
+>
+user92@128.140.85.215's password:
+You are required to change your password immediately (administrator enforced).
+You are required to change your password immediately (administrator enforced).
+Linux vorlesung 6.1.0-21-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.90-1 (2024-05-03) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon May 19 17:17:48 2025 from 87.123.196.55
+WARNING: Your password has expired.
+You must change your password now and login again!
+Changing password for user92.
+Current password:
+New password:
+Retype new password:
+passwd: password updated successfully
+Connection to 128.140.85.215 closed.
+
+enoermerich@Daemon1260:~/neue-git-uebung$ ls ~
+file.txt  git-Test  git-uebung  git-uebung-neu  meinprojekt-test  neue-git-uebung  repos  snap
+enoermerich@Daemon1260:~/neue-git-uebung$ git remote add origin-ssh user92@vorlesung:~/repos/meinprojekt.git
+enoermerich@Daemon1260:~/neue-git-uebung$ git remote -v
+origin-ssh      user92@vorlesung:~/repos/meinprojekt.git (fetch)
+origin-ssh      user92@vorlesung:~/repos/meinprojekt.git (push)
+enoermerich@Daemon1260:~/neue-git-uebung$ git remote set-url origin-ssh user92@128.140.85.215:~/repos/meinprojekt.git
+enoermerich@Daemon1260:~/neue-git-uebung$ git push origin-ssh master
+user92@128.140.85.215's password:
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 253 bytes | 253.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To 128.140.85.215:~/repos/meinprojekt.git
+ * [new branch]      master -> master
+enoermerich@Daemon1260:~/neue-git-uebung$
 
 ---
 
@@ -91,6 +194,38 @@ In this exercise you will:
 ```bash
 # Paste here the remote‐adding & push outputs
 ```
+Aufgabe 3:
+
+enoermerich@Daemon1260:~/neue-git-uebung$ git remote add github git@github.com:Daemon1260/myproject-gl.git
+enoermerich@Daemon1260:~/neue-git-uebung$ git remote add gitlab git@gitlab.thga.de:rene.noermerich/myproject-gl.git
+enoermerich@Daemon1260:~/neue-git-uebung$ git remote -v
+github  git@github.com:Daemon1260/myproject-gl.git (fetch)
+github  git@github.com:Daemon1260/myproject-gl.git (push)
+gitlab  git@gitlab.thga.de:rene.noermerich/myproject-gl.git (fetch)
+gitlab  git@gitlab.thga.de:rene.noermerich/myproject-gl.git (push)
+origin-ssh      user92@128.140.85.215:~/repos/meinprojekt.git (fetch)
+origin-ssh      user92@128.140.85.215:~/repos/meinprojekt.git (push)
+enoermerich@Daemon1260:~/neue-git-uebung$ git push github master
+Enter passphrase for key '/home/enoermerich/.ssh/id_ed25519':
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 253 bytes | 84.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:Daemon1260/myproject-gh.git
+ * [new branch]      master -> master
+ * 
+enoermerich@Daemon1260:~/neue-git-uebung$ git push gitlab master
+Enter passphrase for key '/home/enoermerich/.ssh/id_ed25519':
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 253 bytes | 63.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: To create a merge request for master, visit:
+remote:   https://gitlab.thga.de/rene.noermerich/meinprojekt-gl/-/merge_requests/new?merge_request%5Bsource_branch%5D=master
+remote:
+To gitlab.thga.de:rene.noermerich/meinprojekt-gl.git
+ * [new branch]      master -> master
 
 ---
 
@@ -105,6 +240,59 @@ In this exercise you will:
 
 * GitHub PR: *paste URL and a one-sentence summary*
 * GitLab MR: *paste URL and a one-sentence summary*
+* 
+Aufgabe 4:
+
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout -b feature-2
+Switched to a new branch 'feature-2'
+enoermerich@Daemon1260:~/neue-git-uebung$ echo "Die zweite Funktion." >feature2.txt
+enoermerich@Daemon1260:~/neue-git-uebung$ git add feature2.txt
+enoermerich@Daemon1260:~/neue-git-uebung$ git commit -m "Add feature2.txt with second feature description"
+[feature-2 9651f0a] Add feature2.txt with second feature description
+ 1 file changed, 1 insertion(+)
+ create mode 100644 feature2.txt
+enoermerich@Daemon1260:~/neue-git-uebung$ git checkout master
+Switched to branch 'master'
+enoermerich@Daemon1260:~/neue-git-uebung$ git merge feature-2
+Updating 1539ba1..9651f0a
+Fast-forward
+ feature2.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 feature2.txt
+enoermerich@Daemon1260:~/neue-git-uebung$ git push origin-ssh master
+user92@128.140.85.215's password:
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 318 bytes | 63.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To 128.140.85.215:~/repos/meinprojekt.git
+   1539ba1..9651f0a  master -> master
+enoermerich@Daemon1260:~/neue-git-uebung$ git push github master
+Enter passphrase for key '/home/enoermerich/.ssh/id_ed25519':
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 318 bytes | 318.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:Daemon1260/myproject-gh.git
+   1539ba1..9651f0a  master -> master
+enoermerich@Daemon1260:~/neue-git-uebung$ git push gitlab master
+Enter passphrase for key '/home/enoermerich/.ssh/id_ed25519':
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 318 bytes | 106.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: To create a merge request for master, visit:
+remote:   https://gitlab.thga.de/rene.noermerich/meinprojekt-gl/-/merge_requests/new?merge_request%5Bsource_branch%5D=master
+remote:
+To gitlab.thga.de:rene.noermerich/meinprojekt-gl.git
+   1539ba1..9651f0a  master -> master
 
 ---
 
